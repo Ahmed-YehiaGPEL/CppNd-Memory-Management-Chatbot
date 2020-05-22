@@ -49,17 +49,17 @@ this->_chatLogic = other._chatLogic;
 this->_rootNode = other._rootNode;
 this->_image = other._image;
 }
-ChatBot::ChatBot(const ChatBot&& other){
-this->_image = std::exchange(other._image, NULL);
+ChatBot::ChatBot( ChatBot&& other){
+this->_image = std::exchange(other._image, nullptr);
 this->_chatLogic = std::exchange(other._chatLogic, nullptr);
 this->_rootNode = std::exchange(other._rootNode, nullptr);
 } //[MOD] Move Constructor
-ChatBot::ChatBot& operator=(const ChatBot& other){
+ChatBot& ChatBot::operator=(const ChatBot& other){
 *this = ChatBot(other);
 return *this;
 } //[MOD] Copy Assignmnet
-ChatBot::ChatBot& operator=(const ChatBot&& other) noexcept{
-this->_image = std::exchange(other._image, NULL);
+ChatBot& ChatBot::operator=(ChatBot&& other) noexcept{
+this->_image = std::exchange(other._image, nullptr);
 this->_chatLogic = std::exchange(other._chatLogic, nullptr);
 this->_rootNode = std::exchange(other._rootNode, nullptr);
 return *this;
