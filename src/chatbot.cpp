@@ -21,7 +21,7 @@ ChatBot::ChatBot()
 ChatBot::ChatBot(std::string filename)
 {
     std::cout << "ChatBot Constructor" << std::endl;
-    
+
     // invalidate data handles
     _chatLogic = nullptr;
     _rootNode = nullptr;
@@ -35,7 +35,7 @@ ChatBot::~ChatBot()
     std::cout << "ChatBot Destructor" << std::endl;
 
     // deallocate heap memory
-    if(_image != NULL) // Attention: wxWidgets used NULL and not nullptr
+    if (_image != NULL) // Attention: wxWidgets used NULL and not nullptr
     {
         delete _image;
         _image = NULL;
@@ -44,25 +44,33 @@ ChatBot::~ChatBot()
 
 //// STUDENT CODE
 ////
-ChatBot::ChatBot(const ChatBot& other) {
-this->_chatLogic = other._chatLogic;
-this->_rootNode = other._rootNode;
-this->_image = other._image;
+ChatBot::ChatBot(const ChatBot &other)
+{
+    std::cout << "ChatBot Copy Constructor" << std::endl;
+    this->_chatLogic = other._chatLogic;
+    this->_rootNode = other._rootNode;
+    this->_image = other._image;
 }
-ChatBot::ChatBot( ChatBot&& other){
-this->_image = std::exchange(other._image, nullptr);
-this->_chatLogic = std::exchange(other._chatLogic, nullptr);
-this->_rootNode = std::exchange(other._rootNode, nullptr);
+ChatBot::ChatBot(ChatBot &&other)
+{
+    std::cout << "ChatBot Move Constructor" << std::endl;
+    this->_image = std::exchange(other._image, nullptr);
+    this->_chatLogic = std::exchange(other._chatLogic, nullptr);
+    this->_rootNode = std::exchange(other._rootNode, nullptr);
 } //[MOD] Move Constructor
-ChatBot& ChatBot::operator=(const ChatBot& other){
-*this = ChatBot(other);
-return *this;
+ChatBot &ChatBot::operator=(const ChatBot &other)
+{
+    std::cout << "ChatBot Copy Assignment Operator" << std::endl;
+    *this = ChatBot(other);
+    return *this;
 } //[MOD] Copy Assignmnet
-ChatBot& ChatBot::operator=(ChatBot&& other) noexcept{
-this->_image = std::exchange(other._image, nullptr);
-this->_chatLogic = std::exchange(other._chatLogic, nullptr);
-this->_rootNode = std::exchange(other._rootNode, nullptr);
-return *this;
+ChatBot &ChatBot::operator=(ChatBot &&other) noexcept
+{
+    std::cout << "ChatBot Move Assignment Operator" << std::endl;
+    this->_image = std::exchange(other._image, nullptr);
+    this->_chatLogic = std::exchange(other._chatLogic, nullptr);
+    this->_rootNode = std::exchange(other._rootNode, nullptr);
+    return *this;
 } //[MOD] Move Assignment
 ////
 //// EOF STUDENT CODE
