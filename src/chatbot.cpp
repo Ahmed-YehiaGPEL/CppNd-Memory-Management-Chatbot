@@ -57,6 +57,7 @@ ChatBot::ChatBot(ChatBot &&other)
     this->_image = std::exchange(other._image, nullptr);
     this->_chatLogic = std::exchange(other._chatLogic, nullptr);
     this->_rootNode = std::exchange(other._rootNode, nullptr);
+    _chatLogic->SetChatbotHandle(this);
 } //[MOD] Move Constructor
 ChatBot &ChatBot::operator=(const ChatBot &other)
 {
@@ -70,6 +71,7 @@ ChatBot &ChatBot::operator=(ChatBot &&other) noexcept
     this->_image = std::exchange(other._image, nullptr);
     this->_chatLogic = std::exchange(other._chatLogic, nullptr);
     this->_rootNode = std::exchange(other._rootNode, nullptr);
+    _chatLogic->SetChatbotHandle(this);
     return *this;
 } //[MOD] Move Assignment
 ////
